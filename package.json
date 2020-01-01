@@ -1,12 +1,11 @@
 {
   "name": "xastscript",
   "version": "0.0.0",
-  "description": "Hyperscript compatible DSL for creating xast trees",
+  "description": "Create xast trees",
   "license": "MIT",
   "keywords": [
     "xast",
     "unist",
-    "hyperscript",
     "dsl",
     "xml",
     "extensible",
