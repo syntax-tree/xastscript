@@ -142,7 +142,7 @@ Yields:
 
 ## API
 
-### `x(name[, attributes][, ...children])`
+### `x(name[, attributes][, …children])`
 
 Create XML *[trees][tree]* in **[xast][]**.
 
@@ -182,6 +182,10 @@ XML can be a dangerous language: don’t trust user-provided data.
     — Create a **[hast][]** (HTML or SVG) unist tree
 *   [`xast-util-to-xml`](https://github.com/syntax-tree/xast-util-to-xml)
     — Serialize nodes to XML
+*   [`xast-util-from-xml`](https://github.com/syntax-tree/xast-util-from-xml)
+    — Parse from XML
+*   [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
+    — Transform hast (html, svg) to xast (xml)
 
 ## Contribute
 
@@ -189,8 +193,8 @@ See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
 See [`support.md`][support] for ways to get help.
 
-This project has a [Code of Conduct][coc].
-By interacting with this repository, organisation, or community you agree to
+This project has a [code of conduct][coc].
+By interacting with this repository, organization, or community you agree to
 abide by its terms.
 
 ## License
