@@ -1,13 +1,16 @@
 {
   "name": "xastscript",
   "version": "1.0.0",
-  "description": "Create xast trees",
+  "description": "xast utility to create trees",
   "license": "MIT",
   "keywords": [
-    "xast",
     "unist",
-    "dsl",
+    "xast",
+    "xast-util",
+    "util",
+    "utility",
     "xml",
+    "dsl",
     "extensible",
     "markup",
     "language"
