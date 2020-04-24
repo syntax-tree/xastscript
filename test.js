@@ -3,11 +3,11 @@
 var test = require('tape')
 var x = require('.')
 
-test('xastscript', function(t) {
+test('xastscript', function (t) {
   t.equal(typeof x, 'function', 'should expose a function')
 
   t.throws(
-    function() {
+    function () {
       x()
     },
     /Expected element name, got `undefined`/,
@@ -98,10 +98,10 @@ test('xastscript', function(t) {
   )
 
   t.throws(
-    function() {
+    function () {
       x('y', {}, {})
     },
-    /Expected node, nodes, string, got `\[object Object\]`/,
+    /Expected node, nodes, string, got `\[object Object]`/,
     'should throw on invalid children'
   )
 
