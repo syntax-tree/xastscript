@@ -156,7 +156,7 @@ Case sensitive and can contain a namespace prefix (such as `rdf:RDF`).
 ###### `attributes`
 
 Map of attributes (`Object.<*>`, optional).
-Nully (`null` or `undefined`) or `NaN` values are ignored, other values are
+Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
 turned to strings.
 
 Cannot be omitted if `children` is a `Node`.

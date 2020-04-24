@@ -32,7 +32,7 @@ function x(name, attributes) {
     for (attribute in attributes) {
       value = attributes[attribute]
 
-      // Ignore nully and NaN values.
+      // Ignore nullish and NaN values.
       if (value !== null && value !== undefined && value === value) {
         attrs[attribute] = String(value)
       }
