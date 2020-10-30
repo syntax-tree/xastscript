@@ -2,65 +2,56 @@
 
 module.exports = x
 
-var slice = [].slice
-
 // Creating xast elements.
 function x(name, attributes) {
-  var attrs = {}
-  var childrenIndex = 2
-  var attribute
-  var value
-  var node
+  var node = {type: 'element', name: name, attributes: {}, children: []}
+  var index = 1
+  var key
 
-  if (typeof name !== 'string' || name === '') {
+  if (typeof name !== 'string' || !name) {
     throw new Error('Expected element name, got `' + name + '`')
   }
 
-  node = {type: 'element', name: name, attributes: attrs, children: []}
-
-  // Note that we do not accept a node instead of attributes.
-  if (
-    typeof attributes === 'number' ||
-    typeof attributes === 'string' ||
-    (attributes && 'length' in attributes)
-  ) {
-    childrenIndex = 1
-    attributes = null
-  }
-
-  if (attributes !== null && attributes !== undefined) {
-    for (attribute in attributes) {
-      value = attributes[attribute]
-
-      // Ignore nullish and NaN values.
-      if (value !== null && value !== undefined && value === value) {
-        attrs[attribute] = String(value)
+  // Handle props.
+  if (attributes) {
+    if (
+      typeof attributes === 'string' ||
+      typeof attributes === 'number' ||
+      'length' in attributes
+    ) {
+      // Nope, it’s something for `children`.
+      index--
+    } else {
+      for (key in attributes) {
+        // Ignore nullish and NaN values.
+        if (attributes[key] != null && attributes[key] === attributes[key]) {
+          node.attributes[key] = String(attributes[key])
+        }
       }
     }
   }
 
-  add(node.children, slice.call(arguments, childrenIndex))
+  // Handle children.
+  while (++index < arguments.length) {
+    addChild(node.children, arguments[index])
+  }
 
   return node
 }
 
-function add(siblings, value) {
-  var index
-  var length
+function addChild(nodes, value) {
+  var index = -1
 
-  if (value === null || value === undefined) {
+  if (value == null) {
     // Empty.
   } else if (typeof value === 'string' || typeof value === 'number') {
-    siblings.push({type: 'text', value: String(value)})
+    nodes.push({type: 'text', value: String(value)})
   } else if (typeof value === 'object' && 'length' in value) {
-    index = -1
-    length = value.length
-
-    while (++index < length) {
-      add(siblings, value[index])
+    while (++index < value.length) {
+      addChild(nodes, value[index])
     }
-  } else if (typeof value === 'object' && typeof value.type === 'string') {
-    siblings.push(value)
+  } else if (typeof value === 'object' && value.type) {
+    nodes.push(value)
   } else {
     throw new TypeError('Expected node, nodes, string, got `' + value + '`')
   }
