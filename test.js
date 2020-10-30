@@ -64,6 +64,21 @@ test('xastscript', function (t) {
   )
 
   t.deepEqual(
+    x('y', {}, [[[x('a')]], [[[[x('b')]], x('c')]]]),
+    {
+      type: 'element',
+      name: 'y',
+      attributes: {},
+      children: [
+        {type: 'element', name: 'a', attributes: {}, children: []},
+        {type: 'element', name: 'b', attributes: {}, children: []},
+        {type: 'element', name: 'c', attributes: {}, children: []}
+      ]
+    },
+    'should add children in a deeply nested array'
+  )
+
+  t.deepEqual(
     x('y', {}, x('a'), x('b')),
     {
       type: 'element',
