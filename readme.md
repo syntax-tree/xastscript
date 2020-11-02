@@ -48,7 +48,7 @@ console.log(
 // For other xast nodes, such as comments, instructions, doctypes, or cdata
 // can be created with unist-builder:
 console.log(
-  u('root', [
+  x(null, [
     u('instruction', {name: 'xml'}, 'version="1.0" encoding="UTF-8"'),
     x('album', [
       u('comment', 'Great album!'),
@@ -142,16 +142,24 @@ Yields:
 
 ## API
 
-### `x(name[, attributes][, …children])`
+### `x(name?[, attributes][, …children])`
 
 Create XML *[trees][tree]* in **[xast][]**.
+
+##### Signatures
+
+*   `x(): root`
+*   `x(null[, …children]): root`
+*   `x(name[, attributes][, …children]): element`
 
 ##### Parameters
 
 ###### `name`
 
-Qualified name (`string`).
+Qualified name (`string`, optional).
 Case sensitive and can contain a namespace prefix (such as `rdf:RDF`).
+When string, an [`Element`][element] is built.
+When nullish, a [`Root`][root] is built instead.
 
 ###### `attributes`
 
@@ -159,16 +167,69 @@ Map of attributes (`Object.<*>`, optional).
 Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
 turned to strings.
 
-Cannot be omitted if `children` is a `Node`.
+Cannot be given if building a [`Root`][root].
+Cannot be omitted when building an [`Element`][element] if the first child is a
+[`Node`][node].
 
 ###### `children`
 
-(Lists of) child nodes (`string`, `Node`, `Array.<children>`, optional).
-When strings are encountered, they are mapped to [`text`][text] nodes.
+(Lists of) children (`string`, `number`, `Node`, `Array.<children>`, optional).
+When strings or numbers are encountered, they are mapped to [`Text`][text]
+nodes.
+If a [`Root`][root] node is given, its children are used instead.
 
 ##### Returns
 
-[`Element`][element].
+[`Element`][element] or [`Root`][root].
+
+## JSX
+
+`xastscript` can be used as a pragma for JSX.
+The example above (omitting the second) can then be written like so:
+
+```jsx
+var u = require('unist-builder')
+var x = require('xastscript')
+
+console.log(
+  <album id={123}>
+    <name>Born in the U.S.A.</name>
+    <artist>Bruce Springsteen</artist>
+    <releasedate>1984-04-06</releasedate>
+  </album>
+)
+
+console.log(
+  <>
+    {u('instruction', {name: 'xml'}, 'version="1.0" encoding="UTF-8"')}
+    <album>
+      {u('comment', 'Great album!')}
+      <name>Born in the U.S.A.</name>
+      <description>{u('cdata', '3 < 5 & 8 > 13')}</description>
+    </album>
+  </>
+)
+```
+
+Note that you must still import `xastscript` yourself and configure your
+JavaScript compiler to use the identifier you assign it to as a pragma (and
+pass `null` for fragments).
+
+For [bublé][], this can be done by setting `jsx: 'x'` and `jsxFragment: 'null'`
+(note that `jsxFragment` is currently only available on the API, not the CLI).
+
+For [Babel][], use [`@babel/plugin-transform-react-jsx`][babel-jsx] (in classic
+mode), and pass `pragma: 'x'` and `pragmaFrag: 'null'`.
+
+Babel also lets you configure this in a script:
+
+```jsx
+/** @jsx x */
+/** @jsxFrag null */
+var x = require('xastscript')
+
+console.log(<music />)
+```
 
 ## Security
 
@@ -249,6 +310,10 @@ abide by its terms.
 
 [tree]: https://github.com/syntax-tree/unist#tree
 
+[node]: https://github.com/syntax-tree/unist#node
+
+[root]: https://github.com/syntax-tree/xast#root
+
 [element]: https://github.com/syntax-tree/xast#element
 
 [text]: https://github.com/syntax-tree/xast#text
@@ -256,3 +321,9 @@ abide by its terms.
 [u]: https://github.com/syntax-tree/unist-builder
 
 [h]: https://github.com/syntax-tree/hastscript
+
+[bublé]: https://github.com/Rich-Harris/buble
+
+[babel]: https://github.com/babel/babel
+
+[babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
