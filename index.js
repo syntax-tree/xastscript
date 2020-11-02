@@ -55,8 +55,11 @@ function addChild(nodes, value) {
       addChild(nodes, value[index])
     }
   } else if (typeof value === 'object' && value.type) {
-    if (value.type === 'root') addChild(nodes, value.children)
-    else nodes.push(value)
+    if (value.type === 'root') {
+      addChild(nodes, value.children)
+    } else {
+      nodes.push(value)
+    }
   } else {
     throw new TypeError('Expected node, nodes, string, got `' + value + '`')
   }
