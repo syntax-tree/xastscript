@@ -95,7 +95,30 @@ test('name', function (t) {
       <>{1}</>
     </a>,
     x('a', '1'),
-    'should support a fragment in an element'
+    'should support a fragment in an element (#1)'
+  )
+
+  var dl = [
+    ['Firefox', 'A red panda.'],
+    ['Chrome', 'A chemical element.']
+  ]
+
+  t.deepEqual(
+    <dl>
+      {dl.map(([title, definition]) => (
+        <>
+          <dt>{title}</dt>
+          <dd>{definition}</dd>
+        </>
+      ))}
+    </dl>,
+    x('dl', [
+      x('dt', dl[0][0]),
+      x('dd', dl[0][1]),
+      x('dt', dl[1][0]),
+      x('dd', dl[1][1])
+    ]),
+    'should support a fragment in an element (#2)'
   )
 
   t.end()
