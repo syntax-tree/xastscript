@@ -4,7 +4,7 @@ import {Attributes, Element, Node} from 'xast'
 
 type Children = string | Node | Children[]
 
-type Primitive = null | undefined | string | number | boolean | symbol | bigint;
+type Primitive = null | undefined | string | number;
 
 /**
  * Extending Attributes to Support JS Primitive Types
