@@ -4,6 +4,15 @@ import {Attributes, Element, Node} from 'xast'
 
 type Children = string | Node | Children[]
 
+type Primitive = null | undefined | string | number | boolean | symbol | bigint;
+
+/**
+ * Extending Attributes to Support JS Primitive Types
+ */
+interface Attributes extends xast.Attributes {
+  [name: string]: Primitive
+}
+
 /**
  * Create XML trees in xast.
  *
