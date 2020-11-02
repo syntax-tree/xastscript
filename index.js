@@ -4,17 +4,21 @@ module.exports = x
 
 // Creating xast elements.
 function x(name, attributes) {
-  var node = {type: 'element', name: name, attributes: {}, children: []}
+  var node =
+    name == null
+      ? {type: 'root', children: []}
+      : {type: 'element', name: name, attributes: {}, children: []}
   var index = 1
   var key
 
-  if (typeof name !== 'string' || !name) {
+  if (name != null && typeof name !== 'string') {
     throw new Error('Expected element name, got `' + name + '`')
   }
 
   // Handle props.
   if (attributes) {
     if (
+      name == null ||
       typeof attributes === 'string' ||
       typeof attributes === 'number' ||
       'length' in attributes
@@ -51,7 +55,8 @@ function addChild(nodes, value) {
       addChild(nodes, value[index])
     }
   } else if (typeof value === 'object' && value.type) {
-    nodes.push(value)
+    if (value.type === 'root') addChild(nodes, value.children)
+    else nodes.push(value)
   } else {
     throw new TypeError('Expected node, nodes, string, got `' + value + '`')
   }
