@@ -1,17 +1,23 @@
 'use strict'
 
 var test = require('tape')
-var x = require('.')
+var x = require('..')
 
 test('xastscript', function (t) {
   t.equal(typeof x, 'function', 'should expose a function')
 
+  t.deepEqual(
+    x(),
+    {type: 'root', children: []},
+    'should create a root when w/o `name`'
+  )
+
   t.throws(
     function () {
-      x()
+      x(1)
     },
-    /Expected element name, got `undefined`/,
-    'should throw without `name`'
+    /Expected element name, got `1`/,
+    'should throw w/ incorrect `name`'
   )
 
   t.deepEqual(
@@ -154,6 +160,38 @@ test('xastscript', function (t) {
       ]
     },
     'should support omitting attributes when given an array for a child'
+  )
+
+  t.deepEqual(
+    x(null, '1'),
+    {type: 'root', children: [{type: 'text', value: '1'}]},
+    'should create a root with a textual child'
+  )
+
+  t.deepEqual(
+    x(null, 1),
+    {type: 'root', children: [{type: 'text', value: '1'}]},
+    'should create a root with a numerical child'
+  )
+
+  t.deepEqual(
+    x(null, x('a')),
+    {
+      type: 'root',
+      children: [{type: 'element', name: 'a', attributes: {}, children: []}]
+    },
+    'should create a root with a node child'
+  )
+
+  t.deepEqual(
+    x('a', {}, [x(null, x('b'))]),
+    {
+      type: 'element',
+      name: 'a',
+      attributes: {},
+      children: [{type: 'element', name: 'b', attributes: {}, children: []}]
+    },
+    'should create a node w/ by unraveling roots'
   )
 
   t.end()
