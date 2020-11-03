@@ -203,9 +203,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/xastscript.svg
+[build-badge]: https://github.com/syntax-tree/xastscript/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/syntax-tree/xastscript
+[build]: https://github.com/syntax-tree/xastscript/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/xastscript.svg
 
