@@ -1,6 +1,6 @@
 // TypeScript Version: 3.7
 
-import {Element, Node} from 'xast'
+import {Element, Node, Root} from 'xast'
 
 type Children = string | Node | number | Children[]
 
@@ -18,6 +18,14 @@ type Attributes = Record<string, Primitive>
  * @param children (Lists of) child nodes. When strings are encountered, they are mapped to Text nodes.
  */
 declare function xastscript(name: string, ...children: Children[]): Element
+
+/**
+ * Create XML trees in xast.
+ *
+ * @param name Qualified name. Case sensitive and can contain a namespace prefix (such as rdf:RDF).
+ * @param children (Lists of) child nodes. When strings are encountered, they are mapped to Text nodes.
+ */
+declare function xastscript(name: null, ...children: Children[]): Root
 
 /**
  * Create XML trees in xast.
