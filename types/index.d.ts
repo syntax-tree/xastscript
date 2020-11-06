@@ -17,7 +17,10 @@ type Attributes = Record<string, Primitive>
  * @param name Qualified name. Case sensitive and can contain a namespace prefix (such as rdf:RDF).
  * @param children (Lists of) child nodes. When strings are encountered, they are mapped to Text nodes.
  */
-declare function xastscript(name: string, ...children: Children[]): Element
+declare function xastscript(
+  name: string | null,
+  ...children: Children[]
+): Element
 
 /**
  * Create XML trees in xast.
@@ -27,7 +30,7 @@ declare function xastscript(name: string, ...children: Children[]): Element
  * @param children (Lists of) child nodes. When strings are encountered, they are mapped to Text nodes.
  */
 declare function xastscript(
-  name: string,
+  name: string | null,
   attributes?: Attributes,
   ...children: Children[]
 ): Element

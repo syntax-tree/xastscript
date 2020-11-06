@@ -2,12 +2,17 @@ import x = require('xastscript')
 
 x('urlset') // $ExpectType Element
 x('urlset', 'string') // $ExpectType Element
+x('urlset', 1) // $ExpectType Element
 x('urlset', ['string', 'string']) // $ExpectType Element
 x('urlset', x('loc'), 'string') // $ExpectType Element
 x('urlset', x('loc')) // $ExpectType Element
 x('urlset', x('loc'), x('loc')) // $ExpectType Element
 x('urlset', [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', []) // $ExpectType Element
+x(null) // $ExpectType Element
+x(null, 'string') // $ExpectType Element
+x(null, 1) // $ExpectType Element
+x(null, []) // $ExpectType Element
 
 const xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
 
@@ -20,6 +25,10 @@ x('urlset', {xmlns}, x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, x('loc'), x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', {xmlns}, []) // $ExpectType Element
+x(null, {xmlns}) // $ExpectType Element
+x(null, {xmlns}, 'string') // $ExpectType Element
+x(null, {xmlns}, 1) // $ExpectType Element
+x(null, {xmlns}, []) // $ExpectType Element
 
 const xmlNumberAttribute = 100
 x('urlset', {xmlNumberAttribute}, 'string') // $ExpectType Element
