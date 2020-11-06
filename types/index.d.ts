@@ -1,8 +1,15 @@
 // TypeScript Version: 3.7
 
-import {Attributes, Element, Node} from 'xast'
+import {Element, Node} from 'xast'
 
-type Children = string | Node | Children[]
+type Children = string | Node | number | Children[]
+
+type Primitive = null | undefined | string | number
+
+/**
+ * Extending Attributes to Support JS Primitive Types
+ */
+type Attributes = Record<string, Primitive>
 
 /**
  * Create XML trees in xast.
