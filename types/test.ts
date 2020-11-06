@@ -9,10 +9,10 @@ x('urlset', x('loc')) // $ExpectType Element
 x('urlset', x('loc'), x('loc')) // $ExpectType Element
 x('urlset', [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', []) // $ExpectType Element
-x(null) // $ExpectType Element
-x(null, 'string') // $ExpectType Element
-x(null, 1) // $ExpectType Element
-x(null, []) // $ExpectType Element
+x(null) // $ExpectType Root
+x(null, 'string') // $ExpectType Root
+x(null, 1) // $ExpectType Root
+x(null, []) // $ExpectType Root
 
 const xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
 
@@ -25,10 +25,10 @@ x('urlset', {xmlns}, x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, x('loc'), x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', {xmlns}, []) // $ExpectType Element
-x(null, {xmlns}) // $ExpectType Element
-x(null, {xmlns}, 'string') // $ExpectType Element
-x(null, {xmlns}, 1) // $ExpectType Element
-x(null, {xmlns}, []) // $ExpectType Element
+x(null, {xmlns}) // $ExpectType Root
+x(null, {xmlns}, 'string') // $ExpectType Root
+x(null, {xmlns}, 1) // $ExpectType Root
+x(null, {xmlns}, []) // $ExpectType Root
 
 const xmlNumberAttribute = 100
 x('urlset', {xmlNumberAttribute}, 'string') // $ExpectType Element
