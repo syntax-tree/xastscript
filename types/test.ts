@@ -25,10 +25,6 @@ x('urlset', {xmlns}, x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, x('loc'), x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', {xmlns}, []) // $ExpectType Element
-x(null, {xmlns}) // $ExpectType Root
-x(null, {xmlns}, 'string') // $ExpectType Root
-x(null, {xmlns}, 1) // $ExpectType Root
-x(null, {xmlns}, []) // $ExpectType Root
 
 const xmlNumberAttribute = 100
 x('urlset', {xmlNumberAttribute}, 'string') // $ExpectType Element
@@ -39,3 +35,4 @@ x('urlset', {xmlNumberAttribute}, []) // $ExpectType Element
 x() // $ExpectError
 x(false) // $ExpectError
 x('urlset', x('loc'), {xmlns}) // $ExpectError
+x(null, {xmlns}) // $ExpectError
