@@ -1,5 +1,8 @@
 import x = require('xastscript')
 
+const xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+const xmlNumberAttribute = 100
+
 x('urlset') // $ExpectType Element
 x('urlset', 'string') // $ExpectType Element
 x('urlset', 1) // $ExpectType Element
@@ -14,8 +17,6 @@ x(null, 'string') // $ExpectType Root
 x(null, 1) // $ExpectType Root
 x(null, []) // $ExpectType Root
 
-const xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
-
 x('urlset', {xmlns}) // $ExpectType Element
 x('urlset', {xmlns}, 'string') // $ExpectType Element
 x('urlset', {xmlns}, ['string', 'string']) // $ExpectType Element
@@ -26,7 +27,6 @@ x('urlset', {xmlns}, x('loc'), x('loc')) // $ExpectType Element
 x('urlset', {xmlns}, [x('loc'), x('loc')]) // $ExpectType Element
 x('urlset', {xmlns}, []) // $ExpectType Element
 
-const xmlNumberAttribute = 100
 x('urlset', {xmlNumberAttribute}, 'string') // $ExpectType Element
 x('urlset', {xmlNumberAttribute}, 100) // $ExpectType Element
 x('urlset', {xmlNumberAttribute}, x('loc'), 100) // $ExpectType Element
