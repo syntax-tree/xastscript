@@ -9,10 +9,7 @@ type Primitive = null | undefined | string | number
 /**
  * Extending Attributes to Support JS Primitive Types
  */
-// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
-interface Attributes {
-  [attribute: string]: Primitive
-}
+type Attributes = Record<string, Primitive>
 
 /**
  * Create XML trees in xast.
