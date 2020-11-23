@@ -231,6 +231,19 @@ var x = require('xastscript')
 console.log(<music />)
 ```
 
+For [TypeScript][], this can be done by setting `"jsx": "react"` and
+`"jsxFactory": "x"` in the compiler options.  Fragments are not supported in
+TypeScript.
+
+TypeScript also lets you configure this in a script:
+
+```tsx
+/** @jsx x */
+import * as x from 'xastscript'
+
+console.log(<music />)
+```
+
 ## Security
 
 XML can be a dangerous language: don’t trust user-provided data.
@@ -327,3 +340,5 @@ abide by its terms.
 [babel]: https://github.com/babel/babel
 
 [babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
+
+[typescript]: https://www.typescriptlang.org
