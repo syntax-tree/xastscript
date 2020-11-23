@@ -1,5 +1,5 @@
 import {Element} from 'xast'
-import x = require('xastscript')
+import * as x from 'xastscript'
 
 const xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
 

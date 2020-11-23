@@ -1,4 +1,4 @@
-import x = require('xastscript')
+import * as x from 'xastscript'
 
 x('urlset') // $ExpectType Element
 x('urlset', 'string') // $ExpectType Element
