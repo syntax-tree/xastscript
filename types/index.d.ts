@@ -58,7 +58,7 @@ declare namespace xastscript.JSX {
   type Element = xast.Element
 
   /**
-   * This disallows the use of
+   * This disallows the use of functional components.
    */
   type IntrinsicAttributes = never
 
