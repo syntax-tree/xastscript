@@ -233,7 +233,8 @@ console.log(<music />)
 
 For [TypeScript][], this can be done by setting `"jsx": "react"` and
 `"jsxFactory": "x"` in the compiler options.  Fragments are not supported in
-TypeScript.
+TypeScript.  For more details on configuring JSX for TypeScript, see the
+[TypeScript JSX handbook page][].
 
 TypeScript also lets you configure this in a script:
 
@@ -342,3 +343,5 @@ abide by its terms.
 [babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
 
 [typescript]: https://www.typescriptlang.org
+
+[typescript jsx handbook page]: https://www.typescriptlang.org/docs/handbook/jsx.html
