@@ -41,7 +41,7 @@ declare function xastscript(
 ): xast.Element
 
 /**
- * This unique symbol is declared to specify they key on which JSX children are passed, without conflicting
+ * This unique symbol is declared to specify the key on which JSX children are passed, without conflicting
  * with the Attributes type.
  */
 declare const children: unique symbol
