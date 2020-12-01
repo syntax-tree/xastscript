@@ -1,4 +1,4 @@
-// TypeScript Version: 3.7
+// TypeScript Version: 4.0
 
 import * as xast from 'xast'
 
@@ -55,7 +55,7 @@ declare namespace xastscript.JSX {
   /**
    * This defines the return value of JSX syntax.
    */
-  type Element = xast.Element
+  type Element = xast.Element | xast.Root
 
   /**
    * This disallows the use of functional components.

@@ -231,15 +231,16 @@ var x = require('xastscript')
 console.log(<music />)
 ```
 
-For [TypeScript][], this can be done by setting `"jsx": "react"` and
-`"jsxFactory": "x"` in the compiler options.  Fragments are not supported in
-TypeScript.  For more details on configuring JSX for TypeScript, see the
+For [TypeScript][], this can be done by setting `"jsx": "react"`,
+`"jsxFactory": "x"`, and `"jsxFragmentFactory": "null"` in the compiler options.
+For more details on configuring JSX for TypeScript, see the
 [TypeScript JSX handbook page][].
 
 TypeScript also lets you configure this in a script:
 
 ```tsx
 /** @jsx x */
+/** @jsxFrag null */
 import * as x from 'xastscript'
 
 console.log(<music />)
