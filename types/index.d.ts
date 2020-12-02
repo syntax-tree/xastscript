@@ -88,7 +88,7 @@ declare namespace xastscript.JSX {
     /**
      * Only the key matters, not the value.
      */
-    [children]?: any
+    [children]?: never
   }
 }
 
