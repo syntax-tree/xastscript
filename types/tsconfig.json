@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "jsx": "react",
+    "jsxFactory": "x",
+    "jsxFragmentFactory": "null",
     "lib": ["es2015"],
     "noImplicitAny": true,
     "noImplicitThis": true,

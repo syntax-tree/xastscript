@@ -231,6 +231,21 @@ var x = require('xastscript')
 console.log(<music />)
 ```
 
+For [TypeScript][], this can be done by setting `"jsx": "react"`,
+`"jsxFactory": "x"`, and `"jsxFragmentFactory": "null"` in the compiler options.
+For more details on configuring JSX for TypeScript, see the
+[TypeScript JSX handbook page][].
+
+TypeScript also lets you configure this in a script:
+
+```tsx
+/** @jsx x */
+/** @jsxFrag null */
+import * as x from 'xastscript'
+
+console.log(<music />)
+```
+
 ## Security
 
 XML can be a dangerous language: don’t trust user-provided data.
@@ -327,3 +342,7 @@ abide by its terms.
 [babel]: https://github.com/babel/babel
 
 [babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
+
+[typescript]: https://www.typescriptlang.org
+
+[typescript jsx handbook page]: https://www.typescriptlang.org/docs/handbook/jsx.html
