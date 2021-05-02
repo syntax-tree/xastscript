@@ -1,24 +1,21 @@
-'use strict'
-
-module.exports = x
-
 // Creating xast elements.
-function x(name, attributes) {
+export function x(name, attributes) {
   var node =
-    name == null
+    name === undefined || name === null
       ? {type: 'root', children: []}
-      : {type: 'element', name: name, attributes: {}, children: []}
+      : {type: 'element', name, attributes: {}, children: []}
   var index = 1
   var key
 
-  if (name != null && typeof name !== 'string') {
+  if (name !== undefined && name !== null && typeof name !== 'string') {
     throw new Error('Expected element name, got `' + name + '`')
   }
 
   // Handle props.
   if (attributes) {
     if (
-      name == null ||
+      name === undefined ||
+      name === null ||
       typeof attributes === 'string' ||
       typeof attributes === 'number' ||
       'length' in attributes
@@ -28,7 +25,12 @@ function x(name, attributes) {
     } else {
       for (key in attributes) {
         // Ignore nullish and NaN values.
-        if (attributes[key] != null && attributes[key] === attributes[key]) {
+        if (
+          attributes[key] !== undefined &&
+          attributes[key] !== null &&
+          (typeof attributes[key] !== 'number' ||
+            !Number.isNaN(attributes[key]))
+        ) {
           node.attributes[key] = String(attributes[key])
         }
       }
@@ -46,7 +48,7 @@ function x(name, attributes) {
 function addChild(nodes, value) {
   var index = -1
 
-  if (value == null) {
+  if (value === undefined || value === null) {
     // Empty.
   } else if (typeof value === 'string' || typeof value === 'number') {
     nodes.push({type: 'text', value: String(value)})

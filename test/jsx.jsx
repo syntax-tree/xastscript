@@ -1,8 +1,6 @@
-'use strict'
-
-var test = require('tape')
-var u = require('unist-builder')
-var x = require('..')
+import test from 'tape'
+import {u} from 'unist-builder'
+import {x} from '../index.js'
 
 test('name', function (t) {
   t.deepEqual(<a />, x('a'), 'should support a self-closing element')

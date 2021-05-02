@@ -13,6 +13,9 @@
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -22,8 +25,8 @@ npm install xastscript
 ## Use
 
 ```js
-var u = require('unist-builder')
-var x = require('xastscript')
+import {u} from 'unist-builder'
+import {x} from 'xastscript'
 
 // Children as an array:
 console.log(
@@ -188,8 +191,8 @@ If a [`Root`][root] node is given, its children are used instead.
 The example above (omitting the second) can then be written like so:
 
 ```jsx
-var u = require('unist-builder')
-var x = require('xastscript')
+import {u} from 'unist-builder'
+import {x} from 'xastscript'
 
 console.log(
   <album id={123}>
@@ -224,9 +227,8 @@ mode), and pass `pragma: 'x'` and `pragmaFrag: 'null'`.
 Babel also lets you configure this in a script:
 
 ```jsx
-/** @jsx x */
-/** @jsxFrag null */
-var x = require('xastscript')
+/** @jsx x @jsxFrag null */
+import {x} from 'xastscript'
 
 console.log(<music />)
 ```
@@ -241,7 +243,7 @@ TypeScript also lets you configure this in a script:
 ```tsx
 /** @jsx x */
 /** @jsxFrag null */
-import * as x from 'xastscript'
+import {x} from 'xastscript'
 
 console.log(<music />)
 ```

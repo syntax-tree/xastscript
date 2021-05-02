@@ -25,11 +25,14 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
-  "files": [
-    "index.js",
-    "types/index.d.ts"
-  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "types": "types",
+  "files": [
+    "types/index.d.ts",
+    "index.js"
+  ],
   "dependencies": {
     "@types/xast": "^1.0.0"
   },
@@ -37,29 +40,23 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "astring": "^1.0.0",
     "buble": "^0.20.0",
-    "dtslint": "^4.0.0",
-    "nyc": "^15.0.0",
+    "c8": "^7.0.0",
+    "estree-util-build-jsx": "^2.0.0",
     "prettier": "^2.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
     "tape": "^5.0.0",
-    "unist-builder": "^2.0.0",
-    "xo": "^0.38.0"
+    "unist-builder": "^3.0.0",
+    "xo": "^0.39.0"
   },
   "scripts": {
     "generate": "node script/generate-jsx",
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "test-api": "node test",
-    "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test-types": "dtslint types",
-    "test": "npm run generate && npm run format && npm run test-coverage && npm run test-types"
-  },
-  "nyc": {
-    "check-coverage": true,
-    "lines": 100,
-    "functions": 100,
-    "branches": 100
+    "test-api": "node test/index.js",
+    "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov node test/index.js",
+    "test": "npm run generate && npm run format && npm run test-coverage"
   },
   "prettier": {
     "tabWidth": 2,
@@ -71,20 +68,13 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": false,
     "rules": {
-      "eqeqeq": [
-        "error",
-        "always",
-        {
-          "null": "ignore"
-        }
-      ],
-      "guard-for-in": "off",
-      "no-eq-null": "off",
-      "no-self-compare": "off",
-      "unicorn/prefer-number-properties": "off"
-    }
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "ignore": [
+      "types/"
+    ]
   },
   "remarkConfig": {
     "plugins": [

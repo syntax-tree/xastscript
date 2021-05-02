@@ -1,7 +1,5 @@
-'use strict'
-
-var test = require('tape')
-var x = require('..')
+import test from 'tape'
+import {x} from '../index.js'
 
 test('xastscript', function (t) {
   t.equal(typeof x, 'function', 'should expose a function')
@@ -39,7 +37,7 @@ test('xastscript', function (t) {
   )
 
   t.deepEqual(
-    x('y', {a: null, b: undefined, c: NaN}),
+    x('y', {a: null, b: undefined, c: Number.NaN}),
     {type: 'element', name: 'y', attributes: {}, children: []},
     'should ignore null, undefined, and NaN attribute values'
   )
