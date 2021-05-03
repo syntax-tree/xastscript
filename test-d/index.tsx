@@ -1,6 +1,6 @@
 import {expectType, expectError} from 'tsd'
 import {Root, Element} from 'xast'
-import {x} from './index.js'
+import {x} from '../index.js'
 
 expectType<Root>(x())
 expectError(x(true))

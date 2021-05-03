@@ -85,7 +85,7 @@ test('name', function (t) {
       {1 + 1}
     </a>,
     x('a', [x('b'), 'c', x('d', 'e'), '2']),
-    'should support text, elements, and expressions in jsx'
+    'should support text, elements, and expressions in JSX'
   )
 
   t.deepEqual(
