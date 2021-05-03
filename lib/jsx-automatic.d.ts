@@ -1,11 +1,5 @@
 import {XAttributes, XChild, XResult} from './index.js'
 
-/**
- * This unique symbol is declared to specify the key on which JSX children are passed, without conflicting
- * with the Attributes type.
- */
-declare const children: unique symbol
-
 export namespace JSX {
   /**
    * This defines the return value of JSX syntax.
@@ -32,7 +26,7 @@ export namespace JSX {
           /**
            * The prop that matches `ElementChildrenAttribute` key defines the type of JSX children, defines the children type.
            */
-          [children]?: XChild
+          children?: XChild
         }
   }
 
@@ -43,6 +37,6 @@ export namespace JSX {
     /**
      * Only the key matters, not the value.
      */
-    [children]?: never
+    children?: never
   }
 }

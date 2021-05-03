@@ -40,6 +40,9 @@ expectError(<a invalid={{}} />)
 expectError(<a invalid={[1]} />)
 expectError(<a>{{invalid: 'child'}}</a>)
 
+// This is where the classic runtime differs from the automatic runtime.
+expectError(<a children={<b />} />)
+
 declare function Bar(props?: Record<string, unknown>): Element
 expectError(<Bar />)
 
