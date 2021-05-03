@@ -12,6 +12,7 @@ test('xastscript', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       x(1)
     },
     /Expected element name, got `1`/,
@@ -68,6 +69,7 @@ test('xastscript', function (t) {
   )
 
   t.deepEqual(
+    // @ts-ignore Deeply nested children are not typed.
     x('y', {}, [[[x('a')]], [[[[x('b')]], x('c')]]]),
     {
       type: 'element',
@@ -118,6 +120,7 @@ test('xastscript', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       x('y', {}, {})
     },
     /Expected node, nodes, string, got `\[object Object]`/,

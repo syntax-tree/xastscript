@@ -15,6 +15,7 @@ fs.writeFileSync(
       // @ts-ignore Acorn nodes are assignable to ESTree nodes.
       Parser.extend(acornJsx()).parse(
         doc.replace(/'name'/, "'jsx (estree-util-build-jsx, classic)'"),
+        // @ts-ignore Hush, `2021` is fine.
         {sourceType: 'module', ecmaVersion: 2021}
       ),
       {pragma: 'x', pragmaFrag: 'null'}

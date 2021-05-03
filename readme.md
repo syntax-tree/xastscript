@@ -241,8 +241,7 @@ For more details on configuring JSX for TypeScript, see the
 TypeScript also lets you configure this in a script:
 
 ```tsx
-/** @jsx x */
-/** @jsxFrag null */
+/** @jsx x @jsxFrag null */
 import {x} from 'xastscript'
 
 console.log(<music />)
