@@ -39,6 +39,8 @@ expectError(<a invalid={[1]} />)
 expectError(<a>{{invalid: 'child'}}</a>)
 
 // This is where the classic runtime differs from the automatic runtime.
+// The automatic runtime the children prop to define JSX children, whereas it’s
+// used as an attribute in the classic runtime.
 expectError(<a children={<b />} />)
 
 declare function Bar(props?: Record<string, unknown>): Element
