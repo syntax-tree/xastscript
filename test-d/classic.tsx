@@ -6,7 +6,6 @@ import {x} from '../index.js'
 
 type Result = Element | Root
 
-// To do: fix classic types.
 expectType<Result>(<></>)
 expectType<Result>(<a />)
 expectType<Result>(<a b="c" />)
