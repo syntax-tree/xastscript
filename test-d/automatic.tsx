@@ -49,5 +49,9 @@ expectError(<a invalid={{}} />)
 expectError(<a invalid={[1]} />)
 expectError(<a>{{invalid: 'child'}}</a>)
 
+// This is where the automatic runtime differs from the classic runtime.
+// The automatic runtime the children prop to define JSX children, whereas it’s used as an attribute in the classic runtime.
+expectType<Result>(<a children={<b />} />)
+
 declare function Bar(props?: Record<string, unknown>): Element
 expectError(<Bar />)

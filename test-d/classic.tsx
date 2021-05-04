@@ -6,8 +6,6 @@ import {x} from '../index.js'
 
 type Result = Element | Root
 
-// To do: fix classic types.
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 expectType<Result>(<></>)
 expectType<Result>(<a />)
 expectType<Result>(<a b="c" />)
@@ -40,7 +38,10 @@ expectError(<a invalid={{}} />)
 expectError(<a invalid={[1]} />)
 expectError(<a>{{invalid: 'child'}}</a>)
 
+// This is where the classic runtime differs from the automatic runtime.
+// The automatic runtime the children prop to define JSX children, whereas it’s
+// used as an attribute in the classic runtime.
+expectError(<a children={<b />} />)
+
 declare function Bar(props?: Record<string, unknown>): Element
 expectError(<Bar />)
-
-/* eslint-enable @typescript-eslint/no-unsafe-argument */
