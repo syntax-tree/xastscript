@@ -1,7 +1,7 @@
 import test from 'tape'
 import {x} from '../index.js'
 
-test('xastscript', function (t) {
+test('xastscript', (t) => {
   t.equal(typeof x, 'function', 'should expose a function')
 
   t.deepEqual(
@@ -11,7 +11,7 @@ test('xastscript', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-ignore runtime.
       x(1)
     },
@@ -119,7 +119,7 @@ test('xastscript', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-ignore runtime.
       x('y', {}, {})
     },
