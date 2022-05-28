@@ -8,18 +8,60 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-**[xast][]** utility to create XML *[trees][tree]* (like [`hastscript`][h] for
-**[hast][]** and [`unist-builder`][u] for **[unist][]**).
+[xast][] utility to create trees with ease.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`x(name?[, attributes][, …children])`](#xname-attributes-children)
+*   [JSX](#jsx)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a hyperscript interface (like `createElement` from React and
+such) to help with creating xast trees.
+
+## When should I use this?
+
+You can use this utility in your project when you generate xast syntax trees
+with code.
+It helps because it replaces most of the repetition otherwise needed in a syntax
+tree with function calls.
+
+You can instead use [`unist-builder`][u] when creating any unist nodes and
+[`hastscript`][h] when creating hast (HTML) nodes.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
 
 ```sh
 npm install xastscript
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {x} from 'https://esm.sh/xastscript@3'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {x} from 'https://esm.sh/xastscript@3?bundle'
+</script>
 ```
 
 ## Use
@@ -145,9 +187,16 @@ Yields:
 
 ## API
 
+This package exports the identifier `x`.
+There is no default export.
+
+The export map supports the automatic JSX runtime.
+You can pass `xastscript` to your build tool (TypeScript, Babel, SWC) as with
+an `importSource` option or similar.
+
 ### `x(name?[, attributes][, …children])`
 
-Create XML *[trees][tree]* in **[xast][]**.
+Create [xast][] trees.
 
 ##### Signatures
 
@@ -180,7 +229,7 @@ Cannot be omitted when building an [`Element`][element] if the first child is a
 (Lists of) children (`string`, `number`, `Node`, `Array<children>`, optional).
 When strings or numbers are encountered, they are mapped to [`Text`][text]
 nodes.
-If a [`Root`][root] node is given, its children are used instead.
+If a [`Root`][root] node is encountered, its children are used instead.
 
 ##### Returns
 
@@ -188,12 +237,15 @@ If a [`Root`][root] node is given, its children are used instead.
 
 ## JSX
 
-`xastscript` can be used as a pragma for JSX.
+`xastscript` can be used with JSX.
+Either use the automatic runtime set to `xastscript` or import `x` yourself and
+define it as the pragma (plus set the fragment to `null`).
+
 The example above (omitting the second) can then be written like so:
 
 ```jsx
+/** @jsxImportSource x */
 import {u} from 'unist-builder'
-import {x} from 'xastscript'
 
 console.log(
   <album id={123}>
@@ -215,17 +267,14 @@ console.log(
 )
 ```
 
-Note that you must still import `xastscript` yourself and configure your
-JavaScript compiler to use the identifier you assign it to as a pragma (and
-pass `null` for fragments).
+You can use [`estree-util-build-jsx`][estree-util-build-jsx] to compile JSX
+away.
 
-For [bublé][], this can be done by setting `jsx: 'x'` and `jsxFragment: 'null'`
-(note that `jsxFragment` is currently only available on the API, not the CLI).
-
-For [Babel][], use [`@babel/plugin-transform-react-jsx`][babel-jsx] (in classic
-mode), and pass `pragma: 'x'` and `pragmaFrag: 'null'`.
-
-Babel also lets you configure this in a script:
+For [Babel][], use [`@babel/plugin-transform-react-jsx`][babel-jsx] and either
+pass `pragma: 'x'` and `pragmaFrag: 'null'`, or pass `importSource:
+'xastscript'`.
+Alternatively, Babel also lets you configure this with a comment:
+Babel also lets you configure this from code:
 
 ```jsx
 /** @jsx x @jsxFrag null */
@@ -237,16 +286,20 @@ console.log(<music />)
 For [TypeScript][], this can be done by setting `"jsx": "react"`,
 `"jsxFactory": "x"`, and `"jsxFragmentFactory": "null"` in the compiler options.
 For more details on configuring JSX for TypeScript, see the
-[TypeScript JSX handbook page][].
+[TypeScript JSX handbook page][typescript-jsx].
+TypeScript also lets you configure this from code as shown with Babel above.
 
-TypeScript also lets you configure this in a script:
+## Types
 
-```tsx
-/** @jsx x @jsxFrag null */
-import {x} from 'xastscript'
+This package is fully typed with [TypeScript][].
+It exports the additional types `Child` and `Attributes`.
 
-console.log(<music />)
-```
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
 
@@ -255,20 +308,20 @@ XML can be a dangerous language: don’t trust user-provided data.
 ## Related
 
 *   [`unist-builder`][u]
-    — Create any unist tree
+    — create any unist tree
 *   [`hastscript`][h]
-    — Create a **[hast][]** (HTML or SVG) unist tree
+    — create a hast tree
 *   [`xast-util-to-xml`](https://github.com/syntax-tree/xast-util-to-xml)
-    — Serialize nodes to XML
+    — serialize xast as XML
 *   [`xast-util-from-xml`](https://github.com/syntax-tree/xast-util-from-xml)
-    — Parse from XML
+    — parse xast from XML
 *   [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
-    — Transform hast (html, svg) to xast (xml)
+    — transform hast to xast
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [code of conduct][coc].
@@ -309,23 +362,25 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [license]: license
 
 [author]: https://wooorm.com
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[health]: https://github.com/syntax-tree/.github
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
 
-[unist]: https://github.com/syntax-tree/unist
-
-[hast]: https://github.com/syntax-tree/hast
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [xast]: https://github.com/syntax-tree/xast
-
-[tree]: https://github.com/syntax-tree/unist#tree
 
 [node]: https://github.com/syntax-tree/unist#node
 
@@ -339,12 +394,10 @@ abide by its terms.
 
 [h]: https://github.com/syntax-tree/hastscript
 
-[bublé]: https://github.com/Rich-Harris/buble
-
 [babel]: https://github.com/babel/babel
 
 [babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
 
-[typescript]: https://www.typescriptlang.org
+[typescript-jsx]: https://www.typescriptlang.org/docs/handbook/jsx.html
 
-[typescript jsx handbook page]: https://www.typescriptlang.org/docs/handbook/jsx.html
+[estree-util-build-jsx]: https://github.com/syntax-tree/estree-util-build-jsx
