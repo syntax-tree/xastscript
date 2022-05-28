@@ -166,7 +166,8 @@ When nullish, a [`Root`][root] is built instead.
 
 ###### `attributes`
 
-Map of attributes (`Object.<*>`, optional).
+Map of attributes (`Record<string, string|number|boolean|null|undefined>`,
+optional).
 Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
 turned to strings.
 
@@ -176,7 +177,7 @@ Cannot be omitted when building an [`Element`][element] if the first child is a
 
 ###### `children`
 
-(Lists of) children (`string`, `number`, `Node`, `Array.<children>`, optional).
+(Lists of) children (`string`, `number`, `Node`, `Array<children>`, optional).
 When strings or numbers are encountered, they are mapped to [`Text`][text]
 nodes.
 If a [`Root`][root] node is given, its children are used instead.
