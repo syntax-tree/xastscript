@@ -3,39 +3,45 @@ import path from 'node:path'
 import babel from '@babel/core'
 import {Parser} from 'acorn'
 import acornJsx from 'acorn-jsx'
-import {generate} from 'astring'
+import {toJs} from 'estree-util-to-js'
 import {buildJsx} from 'estree-util-build-jsx'
 
 const doc = String(fs.readFileSync(path.join('test', 'jsx.jsx')))
 
 fs.writeFileSync(
   path.join('test', 'jsx-build-jsx-classic.js'),
-  generate(
+  toJs(
+    // @ts-expect-error it’s a program.
     buildJsx(
       // @ts-expect-error Acorn nodes are assignable to ESTree nodes.
       Parser.extend(acornJsx()).parse(
         doc.replace(/'name'/, "'jsx (estree-util-build-jsx, classic)'"),
-        // @ts-expect-error Hush, `2021` is fine.
+        // Note: different npms resolve this differently, so it may break or work, hence the ignore.
+        // @ts-ignore Hush, `2021` is fine.
         {sourceType: 'module', ecmaVersion: 2021}
       ),
       {pragma: 'x', pragmaFrag: 'null'}
     )
-  )
+    // @ts-expect-error Some bug in `to-js`
+  ).value
 )
 
 fs.writeFileSync(
   path.join('test', 'jsx-build-jsx-automatic.js'),
-  generate(
+  toJs(
+    // @ts-expect-error it’s a program.
     buildJsx(
       // @ts-expect-error Acorn nodes are assignable to ESTree nodes.
       Parser.extend(acornJsx()).parse(
         doc.replace(/'name'/, "'jsx (estree-util-build-jsx, automatic)'"),
-        // @ts-expect-error Hush, `2021` is fine.
+        // Note: different npms resolve this differently, so it may break or work, hence the ignore.
+        // @ts-ignore Hush, `2021` is fine.
         {sourceType: 'module', ecmaVersion: 2021}
       ),
       {runtime: 'automatic', importSource: '.'}
     )
-  ).replace(/\/jsx-runtime(?=["'])/g, './lib/runtime.js')
+    // @ts-expect-error Some bug in `to-js`
+  ).value.replace(/\/jsx-runtime(?=["'])/g, './lib/runtime.js')
 )
 
 fs.writeFileSync(
