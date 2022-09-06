@@ -7,6 +7,8 @@
 
 import {jsx} from './jsx-runtime.js'
 
+export {Fragment} from './jsx-runtime.js'
+
 export const jsxDEV =
   /**
    * @type {{
@@ -19,4 +21,3 @@ export const jsxDEV =
       return jsx(/** @type {string} */ (name), props)
     }
   )
-export {Fragment} from './jsx-runtime.js'
