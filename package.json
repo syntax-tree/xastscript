@@ -32,7 +32,9 @@
   "files": [
     "lib/",
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "jsx-runtime.d.ts",
+    "jsx-runtime.js"
   ],
   "exports": {
     ".": "./index.js",
