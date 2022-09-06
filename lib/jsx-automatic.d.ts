@@ -1,3 +1,4 @@
+/* eslint-disable-next-line @typescript-eslint/consistent-type-imports -- fix in major */
 import {XAttributes, XChild, XResult} from './index.js'
 
 export namespace JSX {
@@ -10,6 +11,8 @@ export namespace JSX {
    * This disallows the use of functional components.
    */
   type IntrinsicAttributes = never
+
+  /* eslint-disable @typescript-eslint/consistent-type-definitions -- interfaces are required here */
 
   /**
    * This defines the prop types for known elements.
@@ -39,4 +42,6 @@ export namespace JSX {
      */
     children?: never
   }
+
+  /* eslint-enable @typescript-eslint/consistent-type-definitions */
 }

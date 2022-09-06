@@ -1,3 +1,4 @@
+/* eslint-disable-next-line @typescript-eslint/consistent-type-imports -- fix in major */
 import {XAttributes, XChild, XResult} from './index.js'
 
 /**
@@ -15,6 +16,8 @@ export type Element = XResult
  * This disallows the use of functional components.
  */
 export type IntrinsicAttributes = never
+
+/* eslint-disable @typescript-eslint/consistent-type-definitions -- interfaces are required here */
 
 /**
  * This defines the prop types for known elements.
@@ -44,3 +47,5 @@ export interface ElementChildrenAttribute {
    */
   [children]?: never
 }
+
+/* eslint-enable @typescript-eslint/consistent-type-definitions */
