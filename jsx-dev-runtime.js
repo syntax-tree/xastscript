@@ -9,6 +9,7 @@ import {jsx} from './jsx-runtime.js'
 
 export {Fragment} from './jsx-runtime.js'
 
+// eslint-disable-next-line unicorn/prefer-export-from
 export const jsxDEV =
   /**
    * @type {{
@@ -16,8 +17,4 @@ export const jsxDEV =
    *   (name: string, props: JSXProps, ...unused: unknown[]): Element
    * }}
    */
-  (
-    function (name, props) {
-      return jsx(/** @type {string} */ (name), props)
-    }
-  )
+  (jsx)
