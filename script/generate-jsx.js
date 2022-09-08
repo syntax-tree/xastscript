@@ -38,10 +38,26 @@ fs.writeFileSync(
         // @ts-ignore Hush, `2021` is fine.
         {sourceType: 'module', ecmaVersion: 2021}
       ),
-      {runtime: 'automatic', importSource: '.'}
+      {runtime: 'automatic', importSource: 'xastscript'}
     )
     // @ts-expect-error Some bug in `to-js`
-  ).value.replace(/\/jsx-runtime(?=["'])/g, './lib/runtime.js')
+  ).value
+)
+
+fs.writeFileSync(
+  path.join('test', 'jsx-build-jsx-automatic-development.js'),
+  toJs(
+    // @ts-expect-error it’s a program.
+    buildJsx(
+      // @ts-expect-error Acorn nodes are assignable to ESTree nodes.
+      Parser.extend(acornJsx()).parse(
+        doc.replace(/'name'/, "'jsx (estree-util-build-jsx, automatic)'"),
+        {sourceType: 'module', ecmaVersion: 2021}
+      ),
+      {runtime: 'automatic', importSource: 'xastscript', development: true}
+    )
+    // @ts-expect-error Some bug in `to-js`
+  ).value
 )
 
 fs.writeFileSync(
@@ -57,14 +73,25 @@ fs.writeFileSync(
 fs.writeFileSync(
   path.join('test', 'jsx-babel-automatic.js'),
   // @ts-expect-error Result always given.
-  babel
-    .transformSync(doc.replace(/'name'/, "'jsx (babel, automatic)'"), {
-      plugins: [
-        [
-          '@babel/plugin-transform-react-jsx',
-          {runtime: 'automatic', importSource: '.'}
-        ]
+  babel.transformSync(doc.replace(/'name'/, "'jsx (babel, automatic)'"), {
+    plugins: [
+      [
+        '@babel/plugin-transform-react-jsx',
+        {runtime: 'automatic', importSource: 'xastscript'}
       ]
-    })
-    .code.replace(/\/jsx-runtime(?=["'])/g, './lib/runtime.js')
+    ]
+  }).code
+)
+
+fs.writeFileSync(
+  path.join('test', 'jsx-babel-automatic-development.js'),
+  // @ts-expect-error Result always given.
+  babel.transformSync(doc.replace(/'name'/, "'jsx (babel, automatic)'"), {
+    plugins: [
+      [
+        '@babel/plugin-transform-react-jsx',
+        {runtime: 'automatic', importSource: 'xastscript', development: true}
+      ]
+    ]
+  }).code
 )

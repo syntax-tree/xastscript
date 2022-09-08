@@ -1,5 +1,5 @@
 /* @jsxRuntime automatic */
-/* @jsxImportSource .. */
+/* @jsxImportSource xastscript */
 
 import {expectType, expectError} from 'tsd'
 import type {Root, Element} from 'xast'

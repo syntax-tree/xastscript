@@ -33,12 +33,15 @@
     "lib/",
     "index.d.ts",
     "index.js",
+    "jsx-dev-runtime.d.ts",
+    "jsx-dev-runtime.js",
     "jsx-runtime.d.ts",
     "jsx-runtime.js"
   ],
   "exports": {
     ".": "./index.js",
     "./index.js": "./index.js",
+    "./jsx-dev-runtime": "./jsx-dev-runtime.js",
     "./jsx-runtime": "./jsx-runtime.js"
   },
   "dependencies": {
