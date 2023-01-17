@@ -18,6 +18,10 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`x(name?[, attributes][, …children])`](#xname-attributes-children)
+    *   [`Attributes`](#attributes-1)
+    *   [`Child`](#child)
+    *   [`Result`](#result)
+*   [Syntax tree](#syntax-tree)
 *   [JSX](#jsx)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
@@ -44,7 +48,7 @@ You can instead use [`unist-builder`][u] when creating any unist nodes and
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install xastscript
@@ -187,12 +191,12 @@ Yields:
 
 ## API
 
-This package exports the identifier `x`.
+This package exports the identifier [`x`][x].
 There is no default export.
 
 The export map supports the automatic JSX runtime.
-You can pass `xastscript` to your build tool (TypeScript, Babel, SWC) as with
-an `importSource` option or similar.
+You can pass `xastscript` to your build tool (TypeScript, Babel, SWC) with an
+`importSource` option or similar.
 
 ### `x(name?[, attributes][, …children])`
 
@@ -216,36 +220,81 @@ When nullish, a [`Root`][root] is built instead.
 
 ###### `attributes`
 
-Map of attributes (`Record<string, string | number | boolean | null | undefined>`,
-optional).
-Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
-turned to strings.
-
-Cannot be given if building a [`Root`][root].
-Cannot be omitted when building an [`Element`][element] if the first child is a
-[`Node`][node].
+Attributes of the element ([`Attributes`][attributes], optional).
 
 ###### `children`
 
-(Lists of) children (`string`, `number`, `Node`, `Array<children>`, optional).
-When strings or numbers are encountered, they are mapped to [`Text`][text]
-nodes.
-If a [`Root`][root] node is encountered, its children are used instead.
+Children of the node ([`Child`][child] or `Array<Child>`, optional).
 
 ##### Returns
 
-[`Element`][element] or [`Root`][root].
+Created tree ([`Result`][result]).
+
+[`Element`][element] when a `name` is passed, otherwise [`Root`][root].
+
+### `Attributes`
+
+Map of attributes (TypeScript type).
+
+Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
+turned to strings.
+
+###### Type
+
+```ts
+type Attributes = Record<string, string | number | boolean | null | undefined>
+```
+
+### `Child`
+
+(Lists of) children (TypeScript type).
+
+When strings or numbers are encountered, they are turned into [`Text`][text]
+nodes.
+[`Root`][root] nodes are treated as “fragments”, meaning that their children
+are used instead.
+
+###### Type
+
+```ts
+type Child =
+  | string
+  | number
+  | null
+  | undefined
+  | Node
+  | Array<string | number | null | undefined | Node>
+```
+
+### `Result`
+
+Result from a `x` call (TypeScript type).
+
+###### Type
+
+```ts
+type Result = Root | Element
+```
+
+## Syntax tree
+
+The syntax tree is [xast][].
 
 ## JSX
 
-`xastscript` can be used with JSX.
-Either use the automatic runtime set to `xastscript` or import `x` yourself and
-define it as the pragma (plus set the fragment to `null`).
+This package can be used with JSX.
+You should use the automatic JSX runtime set to `xastscript`.
 
-The example above (omitting the second) can then be written like so:
+> 🪦 **Legacy**: you can also use the classic JSX runtime, but this is not
+> recommended.
+> To do so, import `x` yourself and define it as the pragma (plus set the
+> fragment to `null`).
+
+The Use example above (omitting the second) can then be written like so:
 
 ```jsx
 /** @jsxImportSource x */
+
 import {u} from 'unist-builder'
 
 console.log(
@@ -268,38 +317,17 @@ console.log(
 )
 ```
 
-You can use [`estree-util-build-jsx`][estree-util-build-jsx] to compile JSX
-away.
-
-For [Babel][], use [`@babel/plugin-transform-react-jsx`][babel-jsx] and either
-pass `pragma: 'x'` and `pragmaFrag: 'null'`, or pass `importSource:
-'xastscript'`.
-Alternatively, Babel also lets you configure this with a comment:
-Babel also lets you configure this from code:
-
-```jsx
-/** @jsx x @jsxFrag null */
-import {x} from 'xastscript'
-
-console.log(<music />)
-```
-
-For [TypeScript][], this can be done by setting `"jsx": "react"`,
-`"jsxFactory": "x"`, and `"jsxFragmentFactory": "null"` in the compiler options.
-For more details on configuring JSX for TypeScript, see the
-[TypeScript JSX handbook page][typescript-jsx].
-TypeScript also lets you configure this from code as shown with Babel above.
-
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports the additional types `Child` and `Attributes`.
+It exports the additional types [`Attributes`][attributes], [`Child`][child],
+and [`Result`][result].
 
 ## Compatibility
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
@@ -383,8 +411,6 @@ abide by its terms.
 
 [xast]: https://github.com/syntax-tree/xast
 
-[node]: https://github.com/syntax-tree/unist#node
-
 [root]: https://github.com/syntax-tree/xast#root
 
 [element]: https://github.com/syntax-tree/xast#element
@@ -395,10 +421,10 @@ abide by its terms.
 
 [h]: https://github.com/syntax-tree/hastscript
 
-[babel]: https://github.com/babel/babel
+[x]: #xname-attributes-children
 
-[babel-jsx]: https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-react-jsx
+[attributes]: #attributes-1
 
-[typescript-jsx]: https://www.typescriptlang.org/docs/handbook/jsx.html
+[child]: #child
 
-[estree-util-build-jsx]: https://github.com/syntax-tree/estree-util-build-jsx
+[result]: #result
