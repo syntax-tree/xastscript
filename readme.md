@@ -209,6 +209,7 @@ Create [xast][] trees.
 ###### `name`
 
 Qualified name (`string`, optional).
+
 Case sensitive and can contain a namespace prefix (such as `rdf:RDF`).
 When string, an [`Element`][element] is built.
 When nullish, a [`Root`][root] is built instead.

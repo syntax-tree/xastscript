@@ -1,5 +1,5 @@
 /* eslint-disable-next-line @typescript-eslint/consistent-type-imports -- fix in major */
-import {XAttributes, XChild, XResult} from './index.js'
+import {Attributes, Child, Result} from './index.js'
 
 /**
  * This unique symbol is declared to specify the key on which JSX children are passed, without conflicting
@@ -10,7 +10,7 @@ declare const children: unique symbol
 /**
  * This defines the return value of JSX syntax.
  */
-export type Element = XResult
+export type Element = Result
 
 /**
  * This disallows the use of functional components.
@@ -29,12 +29,12 @@ export type IntrinsicAttributes = never
 // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
 export interface IntrinsicElements {
   [name: string]:
-    | XAttributes
+    | Attributes
     | {
         /**
          * The prop that matches `ElementChildrenAttribute` key defines the type of JSX children, defines the children type.
          */
-        [children]?: XChild
+        [children]?: Child
       }
 }
 

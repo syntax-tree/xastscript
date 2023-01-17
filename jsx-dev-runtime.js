@@ -1,11 +1,14 @@
 /**
  * @typedef {import('xast').Element} Element
  * @typedef {import('xast').Root} Root
- * @typedef {import('./lib/index.js').XChild} XChild
+ * @typedef {import('./lib/index.js').Child} Child
  * @typedef {import('./lib/runtime.js').JSXProps} JSXProps
  */
 
-import {jsx} from './jsx-runtime.js'
+import {jsx} from './lib/runtime.js'
+
+// Export `JSX` as a global for TypeScript.
+export * from './lib/jsx-automatic.js'
 
 export {Fragment} from './jsx-runtime.js'
 
@@ -13,8 +16,8 @@ export {Fragment} from './jsx-runtime.js'
 export const jsxDEV =
   /**
    * @type {{
-   *   (name: null | undefined, props: {children?: XChild}, ...unused: unknown[]): Root
-   *   (name: string, props: JSXProps, ...unused: unknown[]): Element
+   *   (name: null | undefined, props: {children?: Child}, key?: string, ...unused: Array<unknown>): Root
+   *   (name: string, props: JSXProps, key?: string, ...unused: Array<unknown>): Element
    * }}
    */
   (jsx)

@@ -1,11 +1,11 @@
 /* eslint-disable-next-line @typescript-eslint/consistent-type-imports -- fix in major */
-import {XAttributes, XChild, XResult} from './index.js'
+import {Attributes, Child, Result} from './index.js'
 
 export namespace JSX {
   /**
    * This defines the return value of JSX syntax.
    */
-  type Element = XResult
+  type Element = Result
 
   /**
    * This disallows the use of functional components.
@@ -24,12 +24,12 @@ export namespace JSX {
   // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
   interface IntrinsicElements {
     [name: string]:
-      | XAttributes
+      | Attributes
       | {
           /**
            * The prop that matches `ElementChildrenAttribute` key defines the type of JSX children, defines the children type.
            */
-          children?: XChild
+          children?: Child
         }
   }
 
