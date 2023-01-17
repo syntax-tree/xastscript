@@ -1,9 +1,26 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {x} from '../index.js'
+import {x} from 'xastscript'
+import * as coreMod from 'xastscript'
+import * as jsxCoreMod from 'xastscript/jsx-runtime'
+import * as jsxDevMod from 'xastscript/jsx-dev-runtime'
 
 test('xastscript', () => {
-  assert.equal(typeof x, 'function', 'should expose a function')
+  assert.deepEqual(
+    Object.keys(coreMod).sort(),
+    ['x'],
+    'should expose the public api (`/`)'
+  )
+  assert.deepEqual(
+    Object.keys(jsxCoreMod).sort(),
+    ['Fragment', 'jsx', 'jsxs'],
+    'should expose the public api (`/jsx-runtime`)'
+  )
+  assert.deepEqual(
+    Object.keys(jsxDevMod).sort(),
+    ['Fragment', 'jsxDEV'],
+    'should expose the public api (`/jsx-dev-runtime`)'
+  )
 
   assert.deepEqual(
     x(),

@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {u} from 'unist-builder'
-import {x} from '../index.js'
+import {x} from 'xastscript'
 
 test('name', () => {
   assert.deepEqual(<a />, x('a'), 'should support a self-closing element')
