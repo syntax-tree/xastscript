@@ -61,16 +61,6 @@ fs.writeFileSync(
 )
 
 fs.writeFileSync(
-  path.join('test', 'jsx-babel-classic.js'),
-  // @ts-expect-error Result always given.
-  babel.transform(doc.replace(/'name'/, "'jsx (babel, classic)'"), {
-    plugins: [
-      ['@babel/plugin-transform-react-jsx', {pragma: 'x', pragmaFrag: 'null'}]
-    ]
-  }).code
-)
-
-fs.writeFileSync(
   path.join('test', 'jsx-babel-automatic.js'),
   // @ts-expect-error Result always given.
   babel.transformSync(doc.replace(/'name'/, "'jsx (babel, automatic)'"), {
