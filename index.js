@@ -1,7 +1,7 @@
 /**
- * @typedef {import('./lib/index.js').XChild}} Child
+ * @typedef {import('./lib/index.js').XChild} Child
  *   Acceptable child value
- * @typedef {import('./lib/index.js').XAttributes}} Attributes
+ * @typedef {import('./lib/index.js').XAttributes} Attributes
  *   Acceptable attributes value.
  */
 

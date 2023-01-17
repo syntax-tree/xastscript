@@ -13,7 +13,7 @@ export {Fragment} from './jsx-runtime.js'
 export const jsxDEV =
   /**
    * @type {{
-   *   (name: null|undefined, props: {children?: XChild}, ...unused: unknown[]): Root
+   *   (name: null | undefined, props: {children?: XChild}, ...unused: unknown[]): Root
    *   (name: string, props: JSXProps, ...unused: unknown[]): Element
    * }}
    */

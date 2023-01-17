@@ -1,3 +1,5 @@
+/** @jsxImportSource xastscript */
+
 import test from 'tape'
 import {u} from 'unist-builder'
 import {x} from '../index.js'
@@ -9,6 +11,8 @@ test('name', (t) => {
 
   const A = 'a'
 
+  // Note: this file is a template, generated with different runtimes.
+  // @ts-ignore: TS (depending on this build) sometimes doesn’t understand.
   t.deepEqual(<A />, x(A), 'should support an uppercase tag name')
 
   t.deepEqual(
@@ -42,6 +46,8 @@ test('name', (t) => {
   const com = {acme: {a: 'A', b: 'B'}}
 
   t.deepEqual(
+    // Note: this file is a template, generated with different runtimes.
+    // @ts-ignore: TS (depending on this build) sometimes doesn’t understand.
     <com.acme.a />,
     x(com.acme.a),
     'should support members as names (`a.b`)'

@@ -215,7 +215,7 @@ When nullish, a [`Root`][root] is built instead.
 
 ###### `attributes`
 
-Map of attributes (`Record<string, string|number|boolean|null|undefined>`,
+Map of attributes (`Record<string, string | number | boolean | null | undefined>`,
 optional).
 Nullish (`null` or `undefined`) or `NaN` values are ignored, other values are
 turned to strings.
