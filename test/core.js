@@ -1,16 +1,17 @@
-import test from 'tape'
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {x} from '../index.js'
 
-test('xastscript', (t) => {
-  t.equal(typeof x, 'function', 'should expose a function')
+test('xastscript', () => {
+  assert.equal(typeof x, 'function', 'should expose a function')
 
-  t.deepEqual(
+  assert.deepEqual(
     x(),
     {type: 'root', children: []},
     'should create a root when w/o `name`'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       x(1)
@@ -19,31 +20,31 @@ test('xastscript', (t) => {
     'should throw w/ incorrect `name`'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y'),
     {type: 'element', name: 'y', attributes: {}, children: []},
     'should create an element when given `name`'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('Y'),
     {type: 'element', name: 'Y', attributes: {}, children: []},
     'should treat `name` case-sensitive'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {a: 'b'}),
     {type: 'element', name: 'y', attributes: {a: 'b'}, children: []},
     'should create an element with given attributes'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {a: null, b: undefined, c: Number.NaN}),
     {type: 'element', name: 'y', attributes: {}, children: []},
     'should ignore null, undefined, and NaN attribute values'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {}, x('z')),
     {
       type: 'element',
@@ -54,7 +55,7 @@ test('xastscript', (t) => {
     'should add a child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {}, [x('a'), x('b')]),
     {
       type: 'element',
@@ -68,7 +69,7 @@ test('xastscript', (t) => {
     'should add children as an array'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error Deeply nested children are not typed.
     x('y', {}, [[[x('a')]], [[[[x('b')]], x('c')]]]),
     {
@@ -84,7 +85,7 @@ test('xastscript', (t) => {
     'should add children in a deeply nested array'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {}, x('a'), x('b')),
     {
       type: 'element',
@@ -98,7 +99,7 @@ test('xastscript', (t) => {
     'should add children as arguments'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {}, 'a', 1),
     {
       type: 'element',
@@ -112,13 +113,13 @@ test('xastscript', (t) => {
     'should add strings and numbers as literals'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', {}, null, undefined),
     {type: 'element', name: 'y', attributes: {}, children: []},
     'should ignore null and undefined children'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       x('y', {}, {})
@@ -127,7 +128,7 @@ test('xastscript', (t) => {
     'should throw on invalid children'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', 'z'),
     {
       type: 'element',
@@ -138,7 +139,7 @@ test('xastscript', (t) => {
     'should support omitting attributes when given a string for a child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', 1),
     {
       type: 'element',
@@ -149,7 +150,7 @@ test('xastscript', (t) => {
     'should support omitting attributes when given a number for a child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('y', ['a', 1]),
     {
       type: 'element',
@@ -163,19 +164,19 @@ test('xastscript', (t) => {
     'should support omitting attributes when given an array for a child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x(null, '1'),
     {type: 'root', children: [{type: 'text', value: '1'}]},
     'should create a root with a textual child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x(null, 1),
     {type: 'root', children: [{type: 'text', value: '1'}]},
     'should create a root with a numerical child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x(null, x('a')),
     {
       type: 'root',
@@ -184,7 +185,7 @@ test('xastscript', (t) => {
     'should create a root with a node child'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     x('a', {}, [x(null, x('b'))]),
     {
       type: 'element',
@@ -194,6 +195,4 @@ test('xastscript', (t) => {
     },
     'should create a node w/ by unraveling roots'
   )
-
-  t.end()
 })
