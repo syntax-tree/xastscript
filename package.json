@@ -102,9 +102,6 @@
         }
       }
     ],
-    "prettier": true,
-    "rules": {
-      "n/file-extension-in-import": "off"
-    }
+    "prettier": true
   }
 }
