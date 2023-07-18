@@ -1,23 +1,21 @@
 {
-  "include": ["**/**.js", "**/**.jsx"],
+  "compilerOptions": {
+    "checkJs": true,
+    "customConditions": ["development"],
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "exactOptionalPropertyTypes": true,
+    "jsx": "preserve",
+    "lib": ["es2020"],
+    "module": "node16",
+    "strict": true,
+    "target": "es2020"
+  },
   "exclude": [
     "coverage/",
     "node_modules/",
     "lib/jsx-automatic.js",
     "lib/jsx-classic.js"
   ],
-  "compilerOptions": {
-    "checkJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["es2020"],
-    "module": "node16",
-    "newLine": "lf",
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2020",
-    "jsx": "preserve"
-  }
+  "include": ["**/*.js", "**/*.jsx"]
 }
