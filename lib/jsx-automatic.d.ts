@@ -1,5 +1,4 @@
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports -- fix in major */
-import {Attributes, Child, Result} from './index.js'
+import type {Attributes, Child, Result} from './index.js'
 
 export namespace JSX {
   /**
@@ -12,8 +11,6 @@ export namespace JSX {
    */
   type IntrinsicAttributes = never
 
-  /* eslint-disable @typescript-eslint/consistent-type-definitions -- interfaces are required here */
-
   /**
    * This defines the prop types for known elements.
    *
@@ -21,7 +18,6 @@ export namespace JSX {
    *
    * This **must** be an interface.
    */
-  // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
   interface IntrinsicElements {
     [name: string]:
       | Attributes
@@ -42,6 +38,4 @@ export namespace JSX {
      */
     children?: never
   }
-
-  /* eslint-enable @typescript-eslint/consistent-type-definitions */
 }

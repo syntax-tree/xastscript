@@ -242,7 +242,7 @@ turned to strings.
 ###### Type
 
 ```ts
-type Attributes = Record<string, string | number | boolean | null | undefined>
+type Attributes = Record<string, boolean | number | string | null | undefined>
 ```
 
 ### `Child`
@@ -258,12 +258,13 @@ are used instead.
 
 ```ts
 type Child =
-  | string
+  | Array<Node | boolean | number | string | null | undefined>
+  | Node
+  | boolean
   | number
+  | string
   | null
   | undefined
-  | Node
-  | Array<string | number | null | undefined | Node>
 ```
 
 ### `Result`
@@ -273,7 +274,7 @@ Result from a `x` call (TypeScript type).
 ###### Type
 
 ```ts
-type Result = Root | Element
+type Result = Element | Root
 ```
 
 ## Syntax tree

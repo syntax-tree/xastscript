@@ -63,7 +63,7 @@
     "xo": "^0.55.0"
   },
   "scripts": {
-    "prepack": "npm run build && npm run format",
+    "prepack": "npm run generate && npm run build && npm run format",
     "generate": "node script/generate-jsx.js",
     "build": "tsc --build --clean && tsc --build && tsd && type-coverage",
     "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
@@ -91,6 +91,17 @@
     "strict": true
   },
   "xo": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/consistent-indexed-object-style": "off",
+          "@typescript-eslint/consistent-type-definitions": "off"
+        }
+      }
+    ],
     "prettier": true,
     "rules": {
       "n/file-extension-in-import": "off"
