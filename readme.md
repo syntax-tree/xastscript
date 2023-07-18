@@ -57,14 +57,14 @@ npm install xastscript
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {x} from 'https://esm.sh/xastscript@3'
+import {x} from 'https://esm.sh/xastscript@4'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {x} from 'https://esm.sh/xastscript@3?bundle'
+  import {x} from 'https://esm.sh/xastscript@4?bundle'
 </script>
 ```
 
