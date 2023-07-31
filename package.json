@@ -48,9 +48,9 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "c8": "^8.0.0",
-    "esast-util-from-js": "^1.0.0",
-    "estree-util-build-jsx": "^2.0.0",
-    "estree-util-to-js": "^1.0.0",
+    "esast-util-from-js": "^2.0.0",
+    "estree-util-build-jsx": "^3.0.0",
+    "estree-util-to-js": "^2.0.0",
     "prettier": "^3.0.0",
     "remark-cli": "^11.0.0",
     "remark-preset-wooorm": "^9.0.0",
