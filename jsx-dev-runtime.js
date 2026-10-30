@@ -1,8 +1,7 @@
 /**
- * @typedef {import('xast').Element} Element
- * @typedef {import('xast').Root} Root
- * @typedef {import('./lib/index.js').Child} Child
- * @typedef {import('./lib/runtime.js').JSXProps} JSXProps
+ * @import {Element, Root} from 'xast'
+ * @import {Child} from './lib/index.js'
+ * @import {JSXProps} from './lib/runtime.js'
  */
 
 import {jsx} from './lib/runtime.js'
