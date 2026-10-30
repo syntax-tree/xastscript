@@ -54,12 +54,6 @@ In Node.js (version 16+), install with [npm][]:
 npm install xastscript
 ```
 
-In Deno with [`esm.sh`][esmsh]:
-
-```js
-import {x} from 'https://esm.sh/xastscript@4'
-```
-
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
@@ -419,7 +413,7 @@ abide by its terms.
 
 [size]: https://bundlejs.com/?q=xastscript
 
-[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size\&query=$.size.compressedSize\&url=https://deno.bundlejs.com/?q=xastscript
+[size-badge]: https://img.shields.io/bundlejs/size/xastscript
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
