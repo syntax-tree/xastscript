@@ -27,6 +27,12 @@ expectType<Element>(x('', {p: true}))
 expectType<Element>(x('', {p: false}))
 expectType<Element>(x('', {p: 'a'}))
 
+declare const attributesOrNullish: Record<string, string> | undefined
+expectType<Element>(x('', attributesOrNullish))
+expectType<Element>(x('', attributesOrNullish, 'a'))
+declare const attributesOrChild: Record<string, string> | string
+expectType<Element>(x('', attributesOrChild))
+
 // @ts-expect-error: not a valid child.
 x('', {p: [1]})
 
