@@ -1,50 +1,13 @@
 {
-  "name": "xastscript",
-  "version": "4.0.0",
-  "description": "xast utility to create trees",
-  "license": "MIT",
-  "keywords": [
-    "unist",
-    "xast",
-    "xast-util",
-    "util",
-    "utility",
-    "xml",
-    "dsl",
-    "extensible",
-    "markup",
-    "language"
-  ],
-  "repository": "syntax-tree/xastscript",
-  "bugs": "https://github.com/syntax-tree/xastscript/issues",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/unified"
-  },
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/syntax-tree/xastscript/issues",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
-  ],
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    ".": "./index.js",
-    "./index.js": "./index.js",
-    "./jsx-dev-runtime": "./jsx-dev-runtime.js",
-    "./jsx-runtime": "./jsx-runtime.js"
-  },
-  "files": [
-    "lib/",
-    "index.d.ts",
-    "index.js",
-    "jsx-dev-runtime.d.ts",
-    "jsx-dev-runtime.js",
-    "jsx-runtime.d.ts",
-    "jsx-runtime.js"
   ],
   "dependencies": {
     "@types/xast": "^2.0.0"
   },
+  "description": "xast utility to create trees",
   "devDependencies": {
     "@types/node": "^26.0.0",
     "acorn-jsx": "^5.0.0",
@@ -61,15 +24,39 @@
     "unist-builder": "^4.0.0",
     "xo": "^5.0.0"
   },
-  "scripts": {
-    "prepack": "npm run generate && npm run build && npm run format",
-    "generate": "node script/generate-jsx.js",
-    "build": "tsc --build --clean && tsc --build && tsd && type-coverage",
-    "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
-    "test-api": "node --conditions development test/index.js",
-    "test-coverage": "c8 --100 --reporter lcov npm run test-api",
-    "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
+  "exports": {
+    ".": "./index.js",
+    "./index.js": "./index.js",
+    "./jsx-dev-runtime": "./jsx-dev-runtime.js",
+    "./jsx-runtime": "./jsx-runtime.js"
   },
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js",
+    "jsx-dev-runtime.d.ts",
+    "jsx-dev-runtime.js",
+    "jsx-runtime.d.ts",
+    "jsx-runtime.js"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "keywords": [
+    "dsl",
+    "extensible",
+    "language",
+    "markup",
+    "unist",
+    "utility",
+    "util",
+    "xast-util",
+    "xast",
+    "xml"
+  ],
+  "license": "MIT",
+  "name": "xastscript",
   "prettier": {
     "bracketSpacing": false,
     "semi": false,
@@ -83,10 +70,21 @@
       "remark-preset-wooorm"
     ]
   },
+  "repository": "syntax-tree/xastscript",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && tsd && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "generate": "node script/generate-jsx.js",
+    "prepack": "npm run generate && npm run build && npm run format",
+    "test-api": "node --conditions development test/index.js",
+    "test-coverage": "c8 --100 --reporter lcov -- npm run test-api",
+    "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
   "typeCoverage": {
     "atLeast": 100,
-    "detail": true,
-    "ignoreCatch": true,
     "strict": true
-  }
+  },
+  "type": "module",
+  "version": "4.0.0"
 }
