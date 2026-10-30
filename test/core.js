@@ -12,7 +12,7 @@ test('xastscript', async function (t) {
     async function () {
       assert.deepEqual(
         Object.keys(await import('xastscript/jsx-runtime')).sort(),
-        ['Fragment', 'jsx', 'jsxs']
+        ['Fragment', 'jsx', 'jsxDEV', 'jsxs']
       )
     }
   )
@@ -22,7 +22,7 @@ test('xastscript', async function (t) {
     async function () {
       assert.deepEqual(
         Object.keys(await import('xastscript/jsx-dev-runtime')).sort(),
-        ['Fragment', 'jsxDEV']
+        ['Fragment', 'jsx', 'jsxDEV', 'jsxs']
       )
     }
   )

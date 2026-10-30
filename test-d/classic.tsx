@@ -1,9 +1,9 @@
 /* @jsx x */
 /* @jsxFrag null */
 
-import {expectType} from 'tsd'
+import {x} from 'xastscript'
 import type {Element, Root} from 'xast'
-import {x} from '../index.js'
+import {expectType} from 'tsd'
 
 type Result = Element | Root
 

@@ -1,22 +1,13 @@
 /* @jsxRuntime automatic */
 /* @jsxImportSource xastscript */
 
-import {expectType} from 'tsd'
+import {x} from 'xastscript'
 import type {Element, Root} from 'xast'
-import {x} from '../index.js'
-import {Fragment, jsx, jsxs} from '../jsx-runtime.js'
+import {expectType} from 'tsd'
 
 type Result = Element | Root
 
 // JSX automatic runtime.
-expectType<Root>(jsx(Fragment, {}))
-expectType<Root>(jsx(Fragment, {children: x('x')}))
-expectType<Element>(jsx('a', {}))
-expectType<Element>(jsx('a', {children: 'a'}))
-expectType<Element>(jsx('a', {children: x('x')}))
-expectType<Element>(jsxs('a', {children: ['a', 'b']}))
-expectType<Element>(jsxs('a', {children: [x('x'), x('y')]}))
-
 expectType<Result>(<></>)
 expectType<Result>(<a />)
 expectType<Result>(<a b="c" />)

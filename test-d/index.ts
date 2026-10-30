@@ -1,6 +1,23 @@
-import {expectType} from 'tsd'
+import {jsxDEV, Fragment, jsxs, jsx} from 'xastscript/jsx-dev-runtime'
+import {x} from 'xastscript'
 import type {Element, Root} from 'xast'
-import {x} from '../index.js'
+import {expectType} from 'tsd'
+
+expectType<Root>(jsx(Fragment, {}))
+expectType<Root>(jsx(Fragment, {children: x('x')}))
+expectType<Element>(jsx('a', {}))
+expectType<Element>(jsx('a', {children: 'a'}))
+expectType<Element>(jsx('a', {children: x('x')}))
+expectType<Element>(jsxs('a', {children: ['a', 'b']}))
+expectType<Element>(jsxs('a', {children: [x('x'), x('y')]}))
+expectType<Element>(jsxDEV('a', {children: 'a'}))
+// Development builds pass more arguments.
+expectType<Element>(
+  jsxDEV('a', {}, undefined, false, {fileName: 'a.js'}, undefined)
+)
+expectType<Root>(
+  jsxDEV(Fragment, {}, undefined, false, {fileName: 'a.js'}, undefined)
+)
 
 expectType<Root>(x())
 
