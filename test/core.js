@@ -11,7 +11,6 @@ test('xastscript', async function (t) {
     'should expose the public api (`/jsx-runtime`)',
     async function () {
       assert.deepEqual(
-        // eslint-disable-next-line n/file-extension-in-import -- ESLint is wrong.
         Object.keys(await import('xastscript/jsx-runtime')).sort(),
         ['Fragment', 'jsx', 'jsxs']
       )
@@ -22,7 +21,6 @@ test('xastscript', async function (t) {
     'should expose the public api (`/jsx-dev-runtime`)',
     async function () {
       assert.deepEqual(
-        // eslint-disable-next-line n/file-extension-in-import -- ESLint is wrong.
         Object.keys(await import('xastscript/jsx-dev-runtime')).sort(),
         ['Fragment', 'jsxDEV']
       )
@@ -73,7 +71,7 @@ test('xastscript', async function (t) {
   await t.test(
     'should ignore null, undefined, and NaN attribute values',
     async function () {
-      assert.deepEqual(x('y', {a: null, b: undefined, c: Number.NaN}), {
+      assert.deepEqual(x('y', {a: null, b: undefined, c: NaN}), {
         type: 'element',
         name: 'y',
         attributes: {},
@@ -160,7 +158,7 @@ test('xastscript', async function (t) {
     assert.throws(function () {
       // @ts-expect-error: check how the runtime handles non-nodes.
       x('y', {}, {})
-    }, /Expected node, nodes, string, got `\[object Object]`/)
+    }, /Expected node, nodes, string, got `\[object Object\]`/)
   })
 
   await t.test(

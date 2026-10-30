@@ -12,23 +12,23 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`x(name?[, attributes][, …children])`](#xname-attributes-children)
-    *   [`Attributes`](#attributes-1)
-    *   [`Child`](#child)
-    *   [`Result`](#result)
-*   [Syntax tree](#syntax-tree)
-*   [JSX](#jsx)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`x(name?[, attributes][, …children])`](#xname-attributes-children)
+  * [`Attributes`](#attributes-1)
+  * [`Child`](#child)
+  * [`Result`](#result)
+* [Syntax tree](#syntax-tree)
+* [JSX](#jsx)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -204,9 +204,9 @@ Create [xast][] trees.
 
 ##### Signatures
 
-*   `x(): root`
-*   `x(null[, …children]): root`
-*   `x(name[, attributes][, …children]): element`
+* `x(): root`
+* `x(null[, …children]): root`
+* `x(name[, attributes][, …children]): element`
 
 ##### Parameters
 
@@ -293,7 +293,7 @@ You should use the automatic JSX runtime set to `xastscript`.
 
 The Use example above (omitting the second) can then be written like so:
 
-```jsx
+```js
 /** @jsxImportSource xastscript */
 
 import {u} from 'unist-builder'
@@ -340,16 +340,16 @@ XML can be a dangerous language: don’t trust user-provided data.
 
 ## Related
 
-*   [`unist-builder`][u]
-    — create any unist tree
-*   [`hastscript`][h]
-    — create a hast tree
-*   [`xast-util-to-xml`](https://github.com/syntax-tree/xast-util-to-xml)
-    — serialize xast as XML
-*   [`xast-util-from-xml`](https://github.com/syntax-tree/xast-util-from-xml)
-    — parse xast from XML
-*   [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
-    — transform hast to xast
+* [`unist-builder`][u]
+  — create any unist tree
+* [`hastscript`][h]
+  — create a hast tree
+* [`xast-util-to-xml`](https://github.com/syntax-tree/xast-util-to-xml)
+  — serialize xast as XML
+* [`xast-util-from-xml`](https://github.com/syntax-tree/xast-util-from-xml)
+  — parse xast from XML
+* [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
+  — transform hast to xast
 
 ## Contribute
 
@@ -367,68 +367,68 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://github.com/syntax-tree/xastscript/workflows/main/badge.svg
-
-[build]: https://github.com/syntax-tree/xastscript/actions
-
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/xastscript.svg
-
-[coverage]: https://codecov.io/github/syntax-tree/xastscript
-
-[downloads-badge]: https://img.shields.io/npm/dm/xastscript.svg
-
-[downloads]: https://www.npmjs.com/package/xastscript
-
-[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=xastscript
-
-[size]: https://bundlejs.com/?q=xastscript
-
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
-
-[backers-badge]: https://opencollective.com/unified/backers/badge.svg
-
-[collective]: https://opencollective.com/unified
-
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
-
-[chat]: https://github.com/syntax-tree/unist/discussions
-
-[npm]: https://docs.npmjs.com/cli/install
-
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-
-[esmsh]: https://esm.sh
-
-[typescript]: https://www.typescriptlang.org
-
-[license]: license
-
-[author]: https://wooorm.com
-
-[health]: https://github.com/syntax-tree/.github
-
-[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
-
-[support]: https://github.com/syntax-tree/.github/blob/main/support.md
-
-[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
-
-[xast]: https://github.com/syntax-tree/xast
-
-[root]: https://github.com/syntax-tree/xast#root
-
-[element]: https://github.com/syntax-tree/xast#element
-
-[text]: https://github.com/syntax-tree/xast#text
-
-[u]: https://github.com/syntax-tree/unist-builder
-
-[h]: https://github.com/syntax-tree/hastscript
-
-[api-x]: #xname-attributes-children
-
 [api-attributes]: #attributes-1
 
 [api-child]: #child
 
 [api-result]: #result
+
+[api-x]: #xname-attributes-children
+
+[author]: https://wooorm.com
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[build]: https://github.com/syntax-tree/xastscript/actions
+
+[build-badge]: https://github.com/syntax-tree/xastscript/workflows/main/badge.svg
+
+[chat]: https://github.com/syntax-tree/unist/discussions
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
+
+[collective]: https://opencollective.com/unified
+
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
+
+[coverage]: https://codecov.io/github/syntax-tree/xastscript
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/xastscript.svg
+
+[downloads]: https://www.npmjs.com/package/xastscript
+
+[downloads-badge]: https://img.shields.io/npm/dm/xastscript.svg
+
+[element]: https://github.com/syntax-tree/xast#element
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[h]: https://github.com/syntax-tree/hastscript
+
+[health]: https://github.com/syntax-tree/.github
+
+[license]: license
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[root]: https://github.com/syntax-tree/xast#root
+
+[size]: https://bundlejs.com/?q=xastscript
+
+[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size\&query=$.size.compressedSize\&url=https://deno.bundlejs.com/?q=xastscript
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
+[text]: https://github.com/syntax-tree/xast#text
+
+[typescript]: https://www.typescriptlang.org
+
+[u]: https://github.com/syntax-tree/unist-builder
+
+[xast]: https://github.com/syntax-tree/xast
